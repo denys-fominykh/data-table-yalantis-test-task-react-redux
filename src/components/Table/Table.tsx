@@ -8,11 +8,12 @@ import Spinner from '../Spinner';
 
 interface TableProps {
   users: User[];
+  months: string[];
   isLoaded: boolean;
   getItems: () => void;
 }
 
-const Table: FC<TableProps> = ({ users, isLoaded, getItems }) => {
+const Table: FC<TableProps> = ({ users, months, isLoaded, getItems }) => {
   useEffect(() => {
     getItems();
   }, []);
@@ -22,28 +23,39 @@ const Table: FC<TableProps> = ({ users, isLoaded, getItems }) => {
   }
 
   return (
-    <table className="table table-striped">
-      <thead className="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Date of Birthday</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map((user, idx) => {
-          return (
-            <tr key={user.id}>
-              <th scope="row">{idx + 1}</th>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{formatDate(user.dob)}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <>
+      <table className="table">
+        <tbody>
+          <tr>
+            {months.map((month, idx) => {
+              return <td key={idx}>{month}</td>;
+            })}
+          </tr>
+        </tbody>
+      </table>
+      <table className="table table-striped">
+        <thead className="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Date of Birthday</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user, idx) => {
+            return (
+              <tr key={user.id}>
+                <th scope="row">{idx + 1}</th>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>{formatDate(user.dob)}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
   );
 };
 
@@ -51,6 +63,7 @@ const mapStateToProps = (state: any) => {
   return {
     users: state.users,
     isLoaded: state.isLoaded,
+    months: state.months,
   };
 };
 
