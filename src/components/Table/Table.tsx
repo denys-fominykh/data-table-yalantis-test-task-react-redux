@@ -20,7 +20,7 @@ const Table: FC<TableProps> = ({ users, months, isLoaded, getItems }) => {
 
   useEffect(() => {
     getItems();
-  }, []);
+  }, [getItems]);
 
   useEffect(() => {
     setMonthUsers(users);
