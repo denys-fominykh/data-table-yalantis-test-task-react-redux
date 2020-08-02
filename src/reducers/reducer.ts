@@ -1,4 +1,6 @@
-const initialState = {
+import { StateType } from '../types/TState';
+
+const initialState: StateType = {
   users: [],
   months: [
     'January',
@@ -17,7 +19,7 @@ const initialState = {
   isLoaded: false,
 };
 
-const reducer = (state = initialState, action: any) => {
+const reducer = (state: StateType = initialState, action: any): StateType => {
   switch (action.type) {
     case 'GET_USERS':
       return {
