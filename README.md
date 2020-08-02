@@ -1,6 +1,8 @@
 # The Data Table — [Yalantis](https://yalantis.com/) Test Task
 
-This is a project that shows the usage of [React](https://reactjs.org/) and [Redux](https://redux.js.org/).
+This is a project that shows the usage of [React](https://reactjs.org/) + [Redux](https://redux.js.org/) and [Bootstrap](https://getbootstrap.com/).
+
+![screen](./src/assets/screen.png)
 
 ## Available Scripts
 
