@@ -3,11 +3,11 @@ import React, { FC } from 'react';
 import { UserType } from '../../types/TUser';
 import User from '../User';
 
-interface UserListProps {
+interface UsersListProps {
   users: UserType[];
 }
 
-const UserList: FC<UserListProps> = ({ users }) => {
+const UsersList: FC<UsersListProps> = ({ users }) => {
   return (
     <table className="table table-striped table-sm">
       <thead className="thead-dark">
@@ -27,4 +27,4 @@ const UserList: FC<UserListProps> = ({ users }) => {
   );
 };
 
-export default UserList;
+export default UsersList;

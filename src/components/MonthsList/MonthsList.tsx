@@ -3,13 +3,13 @@ import React, { FC } from 'react';
 import { UserType } from '../../types/TUser';
 import Month from '../Month';
 
-interface MonthListProps {
+interface MonthsListProps {
   months: string[];
   users: UserType[];
   filter: (newUsers?: UserType[]) => void;
 }
 
-const MonthList: FC<MonthListProps> = ({ months, users, filter }) => {
+const MonthsList: FC<MonthsListProps> = ({ months, users, filter }) => {
   const getUserMonth = (users: UserType[], month: number): UserType[] => {
     const usersList = users.filter((user: UserType) => {
       const date: Date = new Date(user.dob);
@@ -39,4 +39,4 @@ const MonthList: FC<MonthListProps> = ({ months, users, filter }) => {
   );
 };
 
-export default MonthList;
+export default MonthsList;

@@ -1,6 +1,6 @@
-import { User } from './TUser';
+import { UserType } from './TUser';
 
 export type GetUsers = {
   type: string;
-  payload: User[];
+  payload: UserType[];
 };

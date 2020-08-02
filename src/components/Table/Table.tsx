@@ -5,8 +5,8 @@ import { getItems } from '../../services/getUsersService';
 import { UserType } from '../../types/TUser';
 import { StateType } from '../../types/TState';
 import Spinner from '../Spinner';
-import MonthList from '../MonthList';
-import UserList from '../UserList';
+import MonthsList from '../MonthsList';
+import UsersList from '../UsersList';
 
 interface TableProps {
   users: UserType[];
@@ -40,8 +40,8 @@ const Table: FC<TableProps> = ({ users, months, isLoaded, getItems }) => {
 
   return (
     <>
-      <MonthList months={months} users={users} filter={usersFilter} />
-      <UserList users={monthUsers} />
+      <MonthsList months={months} users={users} filter={usersFilter} />
+      <UsersList users={monthUsers} />
     </>
   );
 };
