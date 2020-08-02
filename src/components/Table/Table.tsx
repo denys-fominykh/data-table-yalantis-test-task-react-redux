@@ -1,22 +1,38 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { getItems } from '../../services/getUsersService';
-import { formatDate } from '../../services/formatDateService';
-import { User } from '../../types/TUser';
+import { UserType } from '../../types/TUser';
+import { StateType } from '../../types/TState';
 import Spinner from '../Spinner';
+import MonthList from '../MonthList';
+import UserList from '../UserList';
 
 interface TableProps {
-  users: User[];
+  users: UserType[];
   months: string[];
   isLoaded: boolean;
   getItems: () => void;
 }
 
 const Table: FC<TableProps> = ({ users, months, isLoaded, getItems }) => {
+  const [monthUsers, setMonthUsers] = useState<UserType[]>(users);
+
   useEffect(() => {
     getItems();
   }, []);
+
+  useEffect(() => {
+    setMonthUsers(users);
+  }, [users]);
+
+  const usersFilter = (newUsers?: UserType[]): void => {
+    if (newUsers) {
+      setMonthUsers(newUsers);
+    } else {
+      setMonthUsers(users);
+    }
+  };
 
   if (!isLoaded) {
     return <Spinner />;
@@ -24,46 +40,17 @@ const Table: FC<TableProps> = ({ users, months, isLoaded, getItems }) => {
 
   return (
     <>
-      <table className="table">
-        <tbody>
-          <tr>
-            {months.map((month, idx) => {
-              return <td key={idx}>{month}</td>;
-            })}
-          </tr>
-        </tbody>
-      </table>
-      <table className="table table-striped">
-        <thead className="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Date of Birthday</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, idx) => {
-            return (
-              <tr key={user.id}>
-                <th scope="row">{idx + 1}</th>
-                <td>{user.firstName}</td>
-                <td>{user.lastName}</td>
-                <td>{formatDate(user.dob)}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <MonthList months={months} users={users} filter={usersFilter} />
+      <UserList users={monthUsers} />
     </>
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: StateType): StateType => {
   return {
     users: state.users,
-    isLoaded: state.isLoaded,
     months: state.months,
+    isLoaded: state.isLoaded,
   };
 };
 
