@@ -25,6 +25,7 @@
     "typescript": "^3.9.7"
   },
   "scripts": {
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "prettier": "prettier --write src/**/*.tsx",
     "start": "react-scripts start",
     "build": "react-scripts build",
