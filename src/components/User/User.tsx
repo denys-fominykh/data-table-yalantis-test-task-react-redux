@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { UserType } from '../../types/TUser';
-import { formatDate } from '../../services/formatDateService';
+import { formatDate } from '../../helpers/formatDate';
 
 interface UserProps {
   user: UserType;
